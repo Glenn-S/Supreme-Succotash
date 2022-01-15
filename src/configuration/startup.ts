@@ -1,6 +1,6 @@
 import { Container, injectable } from 'inversify';
 import "reflect-metadata"; // must go before any DI imports
-import { ExpressService, IExpressService } from '../services/expressService';
+import { ExpressRunner, IExpressRunner } from './ExpressRunner';
 import { IValidator, Validator } from '../validators/Validator';
 import { Types } from './types';
 
@@ -12,26 +12,21 @@ export class Startup {
     this._container = new Container();
   }
 
-  serviceConfiguration(container: Container) {
+  serviceConfiguration() {
     // Configure all dependencies in this method
     // Services
-    container.bind<IExpressService>(Types.IExpressService).to(ExpressService);
-  
+    this._container.bind<IExpressRunner>(Types.IExpressService).to(ExpressRunner);
+
     // Validators
-    container.bind<IValidator>(Types.IValidator).to(Validator);
+    this._container.bind<IValidator>(Types.IValidator).to(Validator);
   }
 
   startup(): void {
     console.log("Registering services");
-
-    this._container.bind<IExpressService>(Types.IExpressService).to(ExpressService);
-
-    // Validators
-    this._container.bind<IValidator>(Types.IValidator).to(Validator);
-    // serviceConfiguration(this._container);
+    this.serviceConfiguration();
 
     console.log("Starting up express service");
-    const service: IExpressService = this._container.get<IExpressService>(Types.IExpressService);
-    console.log(service.get());
+    const service: IExpressRunner = this._container.get<IExpressRunner>(Types.IExpressService);
+    service.startExpress({ port: 5000 });
   }
 }
