@@ -1,8 +1,10 @@
-import express from 'express';
+import { Startup } from './configuration/startup';
 
 /**
- * 
+ * Entry point for the application
  */
+const main = () => {
+  const appContainer = new Startup().startup();
+};
 
-// const app = express();
-console.log("hello");
+main();
