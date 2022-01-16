@@ -26,7 +26,7 @@ export class UserService implements IUserService {
     return {
       data: {
         id: Guid.parse('356e158a-1b4e-4d10-90ec-de4b90ae8c36'),
-        name: 'Glenn',
+        name: 'Glenn Skelton',
         email: 'testing@gmail.com',
         phone: '1234567'
       },
