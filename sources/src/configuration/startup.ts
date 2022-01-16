@@ -5,6 +5,9 @@ import Validator, { IValidator } from '../validators/Validator';
 import { Types } from './types';
 import { UserController } from '../controllers/UserController';
 import { IUserService, UserService } from '../services/UserService';
+import * as dotenv from 'dotenv';
+import path from 'path';
+import { connectToDatabase } from '../database/databaseConfiguration';
 
 @injectable()
 export class Startup {
@@ -29,6 +32,12 @@ export class Startup {
   }
 
   startup(): void {
+    dotenv.config({
+      path: path.resolve(__dirname, '../../../.env')
+    });
+
+    connectToDatabase().catch((err) => console.log(err));
+
     console.log("Registering services");
     this.serviceConfiguration();
 

@@ -49,6 +49,16 @@ export class UserController {
         .status(user.status);
     });
 
+    /**
+     * Create user.
+     */
+    router.post(`/${this._baseRoute}`, (req, res) => {
+
+      res
+        .send({ })
+        .status(201);
+    });
+
     return router;
   }
 };
