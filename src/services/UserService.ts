@@ -7,7 +7,8 @@ import { User } from '../models/User';
 import { IValidator } from '../validators/Validator';
 
 export interface IUserService {
-  getUser(): Result<User>;
+  getUsers(): Result<User[]>;
+  getUserById(id: Guid): Result<User>;
 }
 
 @injectable()
@@ -20,7 +21,7 @@ export class UserService implements IUserService {
     this._validator = validator;
   }
 
-  getUser(): Result<User> {
+  getUserById(id: Guid): Result<User> {
     return {
       data: {
         id: Guid.parse('356e158a-1b4e-4d10-90ec-de4b90ae8c36'),
@@ -30,5 +31,20 @@ export class UserService implements IUserService {
       },
       status: 200
     };
+  }
+
+  getUsers(): Result<User[]> {
+    return {
+      data: [
+        {
+          id: Guid.parse('356e158a-1b4e-4d10-90ec-de4b90ae8c36'),
+          name: 'Glenn',
+          email: 'testing@gmail.com',
+          phone: '1234567'
+        }
+      ],
+      status: 200
+    };
+    
   }
 }

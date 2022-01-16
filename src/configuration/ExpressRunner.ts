@@ -23,8 +23,8 @@ export class ExpressRunner implements  IExpressRunner {
 
   // TODO Figure out best way of abstracting out these routes.
   private configureRoutes(): void {
-    this._express.use(this._userController.baseRoute, this._userController.routes());
-    
+    this._express.use(this._userController.routes());
+
   }
 
   startExpress({ port }: { port: number }): void {
