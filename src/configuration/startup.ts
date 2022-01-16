@@ -1,7 +1,7 @@
 import { Container, injectable } from 'inversify';
 import "reflect-metadata"; // must go before any DI imports
 import { ExpressRunner, IExpressRunner } from './ExpressRunner';
-import { IValidator, Validator } from '../validators/Validator';
+import Validator, { IValidator } from '../validators/Validator';
 import { Types } from './types';
 import { UserController } from '../controllers/UserController';
 import { IUserService, UserService } from '../services/UserService';

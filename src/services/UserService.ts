@@ -18,6 +18,7 @@ export class UserService implements IUserService {
   constructor(
     @inject(Types.IValidator) validator: IValidator
   ) {
+    if (validator === null || validator === undefined) throw Error('Validator was null or undefined');
     this._validator = validator;
   }
 

@@ -6,7 +6,7 @@ export interface IValidator {
 }
 
 @injectable()
-export class Validator implements IValidator {
+export default class Validator implements IValidator {
   constructor() {
     
   }
