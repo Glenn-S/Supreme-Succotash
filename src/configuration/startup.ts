@@ -3,6 +3,8 @@ import "reflect-metadata"; // must go before any DI imports
 import { ExpressRunner, IExpressRunner } from './ExpressRunner';
 import { IValidator, Validator } from '../validators/Validator';
 import { Types } from './types';
+import { UserController } from '../controllers/UserController';
+import { IUserService, UserService } from '../services/UserService';
 
 @injectable()
 export class Startup {
@@ -14,8 +16,13 @@ export class Startup {
 
   serviceConfiguration() {
     // Configure all dependencies in this method
-    // Services
     this._container.bind<IExpressRunner>(Types.IExpressService).to(ExpressRunner);
+
+    // Controllers
+    this._container.bind<UserController>(Types.UserController).to(UserController);
+
+    // Services
+    this._container.bind<IUserService>(Types.IUserService).to(UserService);
 
     // Validators
     this._container.bind<IValidator>(Types.IValidator).to(Validator);
